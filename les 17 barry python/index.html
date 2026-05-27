@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Takenplanner</title>
+</head>
+
+<body>
+
+    <h1>Takenplanner</h1>
+
+    <!-- Formulier -->
+    <form method="post" action="/add">
+        <input
+            type="text"
+            name="titel"
+            placeholder="Nieuwe taak"
+        >
+
+        <button type="submit">
+            Toevoegen
+        </button>
+    </form>
+
+    <hr>
+
+    <!-- Takenlijst -->
+    <ul>
+
+        {% for taak in taken %}
+
+            <li>
+
+                {% if taak.klaar %}
+                    ✅
+                {% else %}
+                    ⬜
+                {% endif %}
+
+                {{ taak.titel }}
+
+                <a href="/done/{{ taak.id }}">
+                    [Klaar]
+                </a>
+
+                <a href="/delete/{{ taak.id }}">
+                    [Verwijder]
+                </a>
+
+            </li>
+
+        {% endfor %}
+
+    </ul>
+
+</body>
+</html>
